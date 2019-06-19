@@ -12,8 +12,15 @@ board.on("ready", function () {
         led_status ?  led.fadeIn() : led.fadeOut()
     }, 1000)
     */
+
     setInterval(ns => {
-        led.brightness(led_slider_value)
+        //led.brightness(led_slider_value)
+        if (led_status) {
+            //led.on()
+            led.brightness(led_slider_value)
+        } else {
+            led.off()
+        }
     }, 1)
 });
 
@@ -21,7 +28,7 @@ Meteor.methods({
     toggleLed(flag) {
         flag ? led_status = true : led_status = false
     },
-    changeSlider(value){
+    changeSlider(value) {
         led_slider_value = value
     }
 });
